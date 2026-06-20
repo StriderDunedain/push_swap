@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 15:25:20 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 16:53:43 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/06/20 17:03:06 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	*choose_adaptive_strategy(double disorder)
 {
 	if (disorder < DISORDER_SIMPLE)
 		return (SIMPLE_STRATEGY);
-	else if (disorder <= DISORDER_MEDIUM)
+	else if (disorder < DISORDER_MEDIUM)
 		return (MEDIUM_STRATEGY);
 	return (COMPLEX_STRATEGY);
 }

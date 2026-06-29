@@ -3,20 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:59:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 22:20:56 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/06/29 19:37:17 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_ARGS_H
 # define PARSE_ARGS_H
 
-# include <stdbool.h>
-# include <stddef.h>
-# include <stdlib.h>
-# include <limits.h>
+# include "push_swap.h"
 
 # define NO_DIFF 0
 # define SPACE_DELIMETER ' '
@@ -36,44 +33,11 @@
 
 # define ERROR_MESSAGE "Error"
 
-typedef enum e_op
-{
-	SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR,
-	OP_COUNT
-}	t_op;
-
-typedef struct s_stack
-{
-	const char	*strategy;
-	double		disorder;
-
-	t_node		*a;
-	t_node		*b;
-
-	size_t		size_a;
-	size_t		size_b;
-
-	size_t		operations[OP_COUNT];
-	size_t		total_ops;
-
-	bool		bench;
-}	t_stack;
-
+size_t  ft_len(char **arr);
 long	ft_atol(const char *str);
 char	**ft_split(char const *s, char c);
 int		ft_strcmp(const char *s1, const char *s2);
 void	set_settings(char **argv, t_stack *algo);
 int		parse_args(int argc, char **argv);
-size_t  ft_len(char **arr);
 
 #endif

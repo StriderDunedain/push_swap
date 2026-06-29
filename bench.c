@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   bench.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:11:04 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 17:00:28 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/06/29 19:33:48 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "parse_args.h"
+#include "push_swap.h"
 
 void	get_benchmarks(t_stack *algo)
 {

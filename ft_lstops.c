@@ -1,4 +1,16 @@
-#include "ft_lstops.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstops.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aschinog <aschinog@student.42vienna.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/15 19:44:29 by aschinog          #+#    #+#             */
+/*   Updated: 2026/07/15 19:44:33 by aschinog         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
 
 t_list	*ft_lstnew(int value)
 {
@@ -22,24 +34,23 @@ t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+bool	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!lst || !new)
-		return ;
+		return (false);
 	new->next = *lst;
 	*lst = new;
+	return (true);
 }
 
-void	ft_lstclear(t_list **lst, void (*del)(int))
+void	ft_lstclear(t_list **lst)
 {
 	t_list	*tmp;
 
-	if (!lst || !del)
+	if (!lst)
 		return ;
 	while (*lst)
 	{
-		del((*lst)->value);
-		del((*lst)->index);
 		tmp = *lst;
 		*lst = (*lst)->next;
 		free(tmp);

@@ -1,4 +1,16 @@
-#include "ft_lstops.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops_ps.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/15 19:49:58 by aschinog          #+#    #+#             */
+/*   Updated: 2026/07/15 20:02:14 by aschinog         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
 
 void	sa(t_stack *stacks)
 {
@@ -10,7 +22,7 @@ void	sa(t_stack *stacks)
 	tmp_value = stacks->a->value;
 	tmp_index = stacks->a->index;
 	stacks->a->value = stacks->a->next->value;
-	stacks->a->index = stacks->a->next->index; 
+	stacks->a->index = stacks->a->next->index;
 	stacks->a->next->value = tmp_value;
 	stacks->a->next->index = tmp_index;
 	stacks->operations[SA]++;
@@ -26,7 +38,7 @@ void	sb(t_stack *stacks)
 	tmp_value = stacks->b->value;
 	tmp_index = stacks->b->index;
 	stacks->b->value = stacks->b->next->value;
-	stacks->b->index = stacks->b->next->index; 
+	stacks->b->index = stacks->b->next->index;
 	stacks->b->next->value = tmp_value;
 	stacks->b->next->index = tmp_index;
 	stacks->operations[SB]++;

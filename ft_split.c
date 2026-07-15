@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/30 18:06:05 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 13:44:31 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/15 19:19:35 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_args.h"
+#include "push_swap.h"
 
 static size_t	word_count(char const *s, char c)
 {

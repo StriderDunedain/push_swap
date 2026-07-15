@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:44:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/23 16:49:52 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/15 20:17:48 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "parse_args.h"
+#include "push_swap.h"
 
 static bool	is_flag(char *value, t_stack *push_swap)
 {
@@ -66,7 +65,7 @@ static bool	is_valid_args(char **values, t_stack *push_swap)
 	return (true);
 }
 
-static bool	clean_up(char **values)
+static bool	clean_up(char **values, t_stack *push_swap)
 {
 	size_t	i;
 
@@ -74,8 +73,9 @@ static bool	clean_up(char **values)
 	while (values[i])
 		free(values[i++]);
 	free(values);
-	stack_clean();  // TODO: Implement
-	ft_printf(stderr, PS_ERROR_MSG);
+	ft_lstclear(push_swap->a);
+	ft_lstclear(push_swap->b);
+	ft_printf(STDERR_FILENO, PS_ERROR_MSG);
 	return (false);
 }
 
@@ -90,15 +90,15 @@ bool	fill_stack(int argc, const char **argv, t_stack *push_swap)
 		values = ft_split(argv[argc], SPACE_DELIMETER);
 		i = ft_len(values);
 		if (!is_valid_args(values, push_swap))
-			return (clean_up(values));
+			return (clean_up(values, push_swap));
 		while (i)
 		{
 			if (is_numerical(values[--i]))
 			{
 				num = ft_atol(values[i]);
 				if (!(num >= INT_MIN && num <= INT_MAX)
-					|| !add_to_stack(&push_swap->a, new_node(num)))  // TODO: Implement
-					return (clean_up(values));
+					|| !ft_lstadd_front(&push_swap->a, ft_lstnew(num)))
+					return (clean_up(values, push_swap));
 			}
 			free(values[i]);
 			values[i] = NULL;
@@ -106,17 +106,4 @@ bool	fill_stack(int argc, const char **argv, t_stack *push_swap)
 		free(values);
 	}
 	return (true);
-}
-
-int	parse_args(int argc, char **argv)
-{
-	t_stack	push_swap;
-
-	push_swap.a = new_stack();  // TODO: Implement
-	push_swap.required_algo = ALGO_NONE;
-	push_swap.bench = false;
-	if (!fill_stack(argc, argv, &push_swap))
-		return (1);
-	set_strategy(&push_swap);
-	return (0);
 }

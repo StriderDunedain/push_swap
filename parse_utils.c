@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 16:45:58 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 22:20:15 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/15 19:51:01 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse_args.h"
+#include "push_swap.h"
+
+size_t	ft_len(char	**arr)
+{
+	size_t	len;
+
+	len = 0;
+	while (arr[len])
+		++len;
+	return (len);
+}
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
@@ -45,14 +55,4 @@ long	ft_atol(const char *str)
 	if (idx)
 		return (sign * res);
 	return (0);
-}
-
-size_t	ft_len(char	**arr)
-{
-	size_t	len;
-
-	len = 0;
-	while (arr[len])
-		++len;
-	return (len);
 }

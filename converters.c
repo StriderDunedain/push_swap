@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   converters.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 20:27:57 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/13 13:48:47 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/15 19:43:43 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
 int	print_str(int fd, const char *str)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_settings.c                                     :+:      :+:    :+:   */
+/*   set_strategy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 15:25:20 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/29 20:15:23 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/15 18:54:20 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,18 @@ static char	*choose_adaptive_strategy(double disorder)
 	return (COMPLEX_STRATEGY);
 }
 
-static void	set_flags(char **argv, t_stack *algo, double disorder)
-{
-	algo->strategy = choose_adaptive_strategy(disorder);
-	algo->bench = false;
-	while (*argv)
-	{
-		if (ft_strcmp(*argv, BENCH_FLAG) == NO_DIFF)
-			algo->bench = true;
-		else if (ft_strcmp(*argv, SIMPLE_FLAG) == NO_DIFF)
-			algo->strategy = SIMPLE_STRATEGY;
-		else if (ft_strcmp(*argv, MEDIUM_FLAG) == NO_DIFF)
-			algo->strategy = MEDIUM_STRATEGY;
-		else if (ft_strcmp(*argv, COMPLEX_FLAG) == NO_DIFF)
-			algo->strategy = COMPLEX_STRATEGY;
-		else if (ft_strcmp(*argv, COMPLEX_FLAG) == NO_DIFF)
-			algo->strategy = choose_adaptive_strategy(disorder);
-		++argv;
-	}
-}
-
-void	set_settings(char **argv, t_stack *algo)
+void	set_strategy(t_stack *push_swap)
 {
 	double	disorder;
 
-	disorder = measure_disorder(algo->a);
-	set_flags(argv, algo, disorder);
-	algo->disorder = disorder;
+	disorder = measure_disorder(push_swap->a, push_swap->size_a);
+	push_swap->disorder = disorder;
+	if (push_swap->required_algo == ALGO_SIMPLE)
+		push_swap->strategy = SIMPLE_STRATEGY;
+	else if (push_swap->required_algo == ALGO_MEDIUM)
+		push_swap->strategy = MEDIUM_STRATEGY;
+	else if (push_swap->required_algo == ALGO_COMPLEX)
+		push_swap->strategy = COMPLEX_STRATEGY;
+	else
+		push_swap->strategy = choose_adaptive_strategy(disorder);
 }

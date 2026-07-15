@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:58 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/15 20:02:14 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/15 20:42:54 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	sa(t_stack *stacks)
 	stacks->a->next->value = tmp_value;
 	stacks->a->next->index = tmp_index;
 	stacks->operations[SA]++;
+	ft_printf(STDOUT_FILENO, "sa\n");
 }
 
 void	sb(t_stack *stacks)
@@ -42,6 +43,7 @@ void	sb(t_stack *stacks)
 	stacks->b->next->value = tmp_value;
 	stacks->b->next->index = tmp_index;
 	stacks->operations[SB]++;
+	ft_printf(STDOUT_FILENO, "sb\n");
 }
 
 void	pa(t_stack *stacks)
@@ -55,6 +57,7 @@ void	pa(t_stack *stacks)
 	first->next = NULL;
 	ft_lstadd_front(&stacks->a, first);
 	stacks->operations[PA]++;
+	ft_printf(STDOUT_FILENO, "pa\n");
 }
 
 void	pb(t_stack *stacks)
@@ -68,4 +71,5 @@ void	pb(t_stack *stacks)
 	first->next = NULL;
 	ft_lstadd_front(&stacks->b, first);
 	stacks->operations[PB]++;
+	ft_printf(STDOUT_FILENO, "pb\n");
 }

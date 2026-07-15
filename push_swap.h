@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/15 20:18:03 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/15 20:47:48 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ char	**ft_split(char const *s, char c);
 
 /* ARGUMENT PARSING */
 
+void	get_benchmarks(t_stack *push_swap);
 bool	fill_stack(int argc, const char **argv, t_stack *push_swap);
 void	set_strategy(t_stack *push_swap);
 int		parse_args(int argc, char **argv, t_stack *push_swap);

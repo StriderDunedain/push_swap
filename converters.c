@@ -6,11 +6,16 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 20:27:57 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/15 19:43:43 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/15 21:22:38 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	print_char(int fd, char c)
+{
+	return (write(fd, &c, 1));
+}
 
 int	print_str(int fd, const char *str)
 {
@@ -26,11 +31,6 @@ int	print_str(int fd, const char *str)
 		count++;
 	}
 	return (count);
-}
-
-int	print_char(int fd, char c)
-{
-	return (write(fd, &c, 1));
 }
 
 int	print_int(int fd, long n)

@@ -6,32 +6,32 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:32 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/15 20:41:21 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/15 21:46:11 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ss(t_stack *stacks)
+void	ss(t_stack *push_swap)
 {
-	sa(stacks);
-	sb(stacks);
-	stacks->operations[SS]++;
-	ft_printf(STDOUT_FILENO, "ss\n");
+	sa(push_swap);
+	sb(push_swap);
+	push_swap->operations[SS]++;
+	handle_op(push_swap, "ss\n");
 }
 
-void	rr(t_stack *stacks)
+void	rr(t_stack *push_swap)
 {
-	ra(stacks);
-	rb(stacks);
-	stacks->operations[RR]++;
-	ft_printf(STDOUT_FILENO, "rr\n");
+	ra(push_swap);
+	rb(push_swap);
+	push_swap->operations[RR]++;
+	handle_op(push_swap, "rr\n");
 }
 
-void	rrr(t_stack *stacks)
+void	rrr(t_stack *push_swap)
 {
-	rra(stacks);
-	rrb(stacks);
-	stacks->operations[RRR]++;
-	ft_printf(STDOUT_FILENO, "rrr\n");
+	rra(push_swap);
+	rrb(push_swap);
+	push_swap->operations[RRR]++;
+	handle_op(push_swap, "rrr\n");
 }

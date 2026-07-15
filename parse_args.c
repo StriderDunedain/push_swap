@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:44:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/15 20:17:48 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/15 21:12:47 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ static bool	clean_up(char **values, t_stack *push_swap)
 	while (values[i])
 		free(values[i++]);
 	free(values);
-	ft_lstclear(push_swap->a);
-	ft_lstclear(push_swap->b);
+	ft_lstclear(&push_swap->a);
+	ft_lstclear(&push_swap->b);
 	ft_printf(STDERR_FILENO, PS_ERROR_MSG);
 	return (false);
 }
 
-bool	fill_stack(int argc, const char **argv, t_stack *push_swap)
+bool	fill_stack(int argc, char **argv, t_stack *push_swap)
 {
 	size_t	i;
 	long	num;

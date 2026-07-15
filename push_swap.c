@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/15 20:17:19 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/15 21:47:40 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,19 @@ static void	printlist(t_list *tmp)
 	}
 }
 
+void	handle_op(t_stack *push_swap, char *op_name)
+{
+	if (push_swap->presort)
+		ft_printf(STDOUT_FILENO, op_name);
+}
+
 int	parse_args(int argc, char **argv, t_stack *push_swap)
 {
 	push_swap->required_algo = ALGO_NONE;
 	push_swap->bench = false;
-	if (!fill_stack(argc, argv, &push_swap))
+	if (!fill_stack(argc, argv, push_swap))
 		return (1);
-	set_strategy(&push_swap);
+	set_strategy(push_swap);
 	return (0);
 }
 

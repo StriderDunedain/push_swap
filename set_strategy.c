@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_settings.c                                     :+:      :+:    :+:   */
+/*   set_strategy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 15:25:20 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/20 17:03:06 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/15 18:54:20 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include "parse_args.h"
 
-static double	measure_disorder(t_node *stack_a, size_t size_a)
+static double	measure_disorder(t_list *stack)
 {
 	int		i;
 	int		j;
 	int		total_pairs;
 	double	mistakes;
-
+	size_t	lstsize;
+	
+	lstsize = ft_lstsize(stack);
 	i = 0;
 	mistakes = 0;
 	total_pairs = 0;
-	if (size_a <= 1)
+	if (lstsize <= 1)
 		return (0.0);
-	while (i < size_a)
+	while (i < lstsize)
 	{
 		j = i + 1;
-		while (j < size_a)
+		while (j < lstsize)
 		{
-			if (stack_a[i] > stack_a[j])  // TODO: Adjust to LL
+			if (stack[i] > stack[j])  // TODO: Adjust to LL
 				++mistakes;
 			++total_pairs;
 			++j;

@@ -6,11 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/07/16 22:22:04 by mtrukhin         ###   ########.fr       */
-=======
-/*   Updated: 2026/07/16 22:55:15 by aschinog         ###   ########.fr       */
->>>>>>> refs/remotes/upstream/main
+/*   Updated: 2026/07/16 23:24:43 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

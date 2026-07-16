@@ -3,18 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   bench.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:11:04 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/15 19:43:18 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 12:08:06 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+static void	print_disorder(double disorder)
+{
+	int		hundredths;
+	char	*stringed;
+	char	buf[3];
+
+	hundredths = (int)(disorder * 10000 + 0.5);
+	stringed = ft_itoa(hundredths / 100);
+	buf[0] = '0' + (hundredths % 100) / 10;
+	buf[1] = '0' + (hundredths % 100) % 10;
+	buf[2] = '\0';
+	ft_printf(STDERR_FILENO, "[bench] disorder:  ");
+	ft_printf(STDERR_FILENO, stringed);
+	ft_printf(STDERR_FILENO, ".");
+	write(STDERR_FILENO, buf, 2);
+	ft_printf(STDERR_FILENO, "\n");
+	free(stringed);
+}
 
 void	get_benchmarks(t_stack *push_swap)
 {
-	ft_printf(STDERR_FILENO, "[bench] disorder:  %.2f\n", push_swap->disorder);
+	print_disorder(push_swap->disorder);
 	ft_printf(STDERR_FILENO, "[bench] strategy:  %s\n", push_swap->strategy);
 	ft_printf(STDERR_FILENO, "[bench] total_ops:  %i\n", push_swap->total_ops);
 	ft_printf(STDERR_FILENO, "[bench] ");

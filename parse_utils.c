@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 16:45:58 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/15 19:51:01 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/16 12:08:58 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,53 @@ long	ft_atol(const char *str)
 	if (idx)
 		return (sign * res);
 	return (0);
+}
+
+static size_t	int_len(int n)
+{
+	size_t	len;
+	long	nb;
+
+	len = 0;
+	if (n == 0)
+		return (1);
+	nb = n;
+	if (nb < 0)
+	{
+		nb = -nb;
+		++len;
+	}
+	while (nb)
+	{
+		nb /= 10;
+		++len;
+	}
+	return (len);
+}
+
+char	*ft_itoa(int n)
+{
+	size_t	len;
+	long	nb;
+	char	*str;
+
+	len = int_len(n);
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	nb = n;
+	if (nb < 0)
+	{
+		str[0] = '-';
+		nb = -nb;
+	}
+	str[len] = '\0';
+	if (nb == 0)
+		str[0] = '0';
+	while (nb)
+	{
+		str[--len] = (nb % 10) + '0';
+		nb /= 10;
+	}
+	return (str);
 }

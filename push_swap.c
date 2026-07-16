@@ -6,11 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/07/16 22:42:11 by mtrukhin         ###   ########.fr       */
-=======
-/*   Updated: 2026/07/16 22:58:44 by aschinog         ###   ########.fr       */
->>>>>>> refs/remotes/upstream/main
+/*   Updated: 2026/07/16 23:22:14 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +27,7 @@ static void	printlist(t_list *lst)
 	}
 }
 
-<<<<<<< HEAD
-void	handle_op(t_stack *ps, char *op_name)
-{
-	if (ps->presort)
-		ft_printf(STDOUT_FILENO, op_name);
-}
-
-void	set_ps(t_stack *ps)
-=======
-int	parse_args(int argc, char **argv, t_stack *ps)
->>>>>>> refs/remotes/upstream/main
+int	set_ps(t_stack *ps)
 {
 	ps->strategy = NULL;
 	ps->disorder = 0;
@@ -49,7 +35,6 @@ int	parse_args(int argc, char **argv, t_stack *ps)
 	ps->b = NULL;
 	ps->total_ops = 0;
 	ps->bench = false;
-	ps->presort = false;
 	ps->required_algo = ALGO_NONE;
 }
 

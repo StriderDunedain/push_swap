@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/17 11:33:40 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/17 14:12:45 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,38 +27,38 @@ static void	printlist(t_list *lst)
 	}
 }
 
-int	parse_args(int argc, char **argv, t_stack *ps)
+int	set_ps(t_stack *ps)
 {
-	if (!fill_stack(argc, argv, ps))
-		return (1);
-	set_strategy(ps);
-	return (0);
+	ps->strategy = NULL;
+	ps->disorder = 0;
+	ps->a = NULL;
+	ps->b = NULL;
+	ps->total_ops = 0;
+	ps->bench = false;
+	ps->required_algo = ALGO_NONE;
 }
+
 
 int	main(int argc, char **argv)
 {
 	t_stack	ps;
 
-	memset(&ps, 0, sizeof(t_stack));
-
-	parse_args(argc, argv, &ps);
-	ft_printf(STDOUT_FILENO, "strategy: %s\n", ps.strategy);
-	ft_printf(STDOUT_FILENO, "bench: %i\n", ps.bench);
-
-	assign_ranks(ps.a);
-
-	ft_printf(STDOUT_FILENO, "ps.a:\n");
+	set_ps(&ps);
+	if (!fill_stack(argc, argv, &ps))
+		return (1);
 	printlist(ps.a);
-	ft_printf(STDOUT_FILENO, "ps.b:\n");
-	printlist(ps.b);
-
-	radix_sort(&ps);
-
-	ft_printf(STDOUT_FILENO, "ps.a:\n");
+	printf("\n\n");
+	set_strategy(&ps);
+	printf("ra: %i", ps.required_algo);
+	if (ps.required_algo == ALGO_SIMPLE)
+		// simple_sort(&ps);  // TODO: Rename to actual sort
+		;
+	else if (ps.required_algo == ALGO_MEDIUM)
+		printf("HERE!!!"), chunk_sort(&ps);
+	else if (ps.required_algo == ALGO_COMPLEX)
+		// complex_sort(&ps);  // TODO: Rename to actual sort
+		;
 	printlist(ps.a);
-	ft_printf(STDOUT_FILENO, "ps.b:\n");
-	printlist(ps.b);
-
 	ft_lstclear(&ps.a);
 	ft_lstclear(&ps.b);
 	return (0);

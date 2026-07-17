@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/17 13:56:03 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/17 14:46:16 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static void	set_ps(t_stack *ps)
+{
+	ps->strategy = NULL;
+	ps->disorder = 0;
+	ps->a = NULL;
+	ps->b = NULL;
+	ps->total_ops = 0;
+	ps->bench = false;
+	ps->required_algo = ALGO_NONE;
+}
+
+#include <stdio.h>  // TODO: Delete later
 
 static void	printlist(t_list *lst)
 {
@@ -26,17 +38,6 @@ static void	printlist(t_list *lst)
 	}
 }
 
-void	set_ps(t_stack *ps)
-{
-	ps->strategy = NULL;
-	ps->disorder = 0;
-	ps->a = NULL;
-	ps->b = NULL;
-	ps->total_ops = 0;
-	ps->bench = false;
-	ps->required_algo = ALGO_NONE;
-}
-
 int	stub_main(int argc, char **argv)
 {
 	t_stack	ps;
@@ -49,13 +50,11 @@ int	stub_main(int argc, char **argv)
 	printf("\n\n");
 	assign_ranks(ps.a);
 	if (ps.required_algo == ALGO_SIMPLE)
-		// selection_sort(&ps);
-		;
+		selection_sort(&ps);
 	else if (ps.required_algo == ALGO_MEDIUM)
 		chunk_sort(&ps);
 	else if (ps.required_algo == ALGO_COMPLEX)
-		// radix_sort(&ps);
-		;
+		radix_sort(&ps);
 	printf("\n\n");
 	printlist(ps.a);
 	ft_lstclear(&ps.a);
@@ -63,26 +62,25 @@ int	stub_main(int argc, char **argv)
 	return (0);
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_stack	ps;
 
 	return (stub_main(argc, argv));
-
+	
 	set_ps(&ps);
 	if (!fill_stack(argc, argv, &ps))
 		return (1);
 	set_strategy(&ps);
 	assign_ranks(ps.a);
 	if (ps.required_algo == ALGO_SIMPLE)
-		// selection_sort(&ps);
-		;
+		selection_sort(&ps);
 	else if (ps.required_algo == ALGO_MEDIUM)
 		chunk_sort(&ps);
 	else if (ps.required_algo == ALGO_COMPLEX)
-		// radix_sort(&ps);
-		;
+		radix_sort(&ps);
+	if (ps.bench)
+		get_benchmarks(&ps);
 	ft_lstclear(&ps.a);
 	ft_lstclear(&ps.b);
 	return (0);

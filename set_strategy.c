@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   set_strategy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 15:25:20 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/17 13:43:43 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/17 14:47:56 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	value_at_index(t_list *lst, int i)
+static int	value_at_index(t_list *lst, int i)
 {
 	while (i-- && lst)
 		lst = lst->next;

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/03 19:50:48 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/06/13 15:07:35 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/17 14:25:46 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "push_swap.h"
 
 int	spec_handler(int fd, va_list *lst, const char **str)
 {

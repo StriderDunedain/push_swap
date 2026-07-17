@@ -6,18 +6,11 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 11:22:31 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/17 14:12:56 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/17 14:33:15 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/*
-** Step 2: push nodes in chunk order to b.
-** Nodes whose rank falls in [chunk_start, chunk_end] get pushed to b.
-** Rotate a to find them efficiently.
-** Push largest-rank chunks first so b ends up with smallest on top.
-*/
 
 bool	chunk_in_top_half(t_list *a, int start, int end, int size)
 {
@@ -76,12 +69,6 @@ void	push_all_chunks(t_stack *ps, int chunk_size, int n)
 		start += chunk_size;
 	}
 }
-
-/*
-** Step 3: pull back from b to a in reverse order.
-** Find the node in b with the highest remaining index,
-** rotate b to bring it to top, then pa.
-*/
 
 void	pull_all(t_stack *ps)
 {

@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 21:21:44 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/17 12:57:50 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/17 14:34:22 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	chunk_sort(t_stack *ps)
 
 void	radix_sort(t_stack *ps)
 {
-	int i;
-	int pos;
-	int size;
-	int bits;
+	int	i;
+	int	pos;
+	int	size;
+	int	bits;
 
 	size = ft_lstsize(ps->a);
 	bits = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/17 13:33:49 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/17 14:52:44 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,21 @@
 
 /* INCLUDES */
 
-# include <stdbool.h>
-# include <stddef.h>
+# include <stdarg.h>
+# include <stdint.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <limits.h>
-
-#include <stdio.h>  // TODO: Delete later
-
-# include "ft_printf.h"
+# include <unistd.h>
 
 /* DEFINES */
+
+# define DEC_BASE 10
+# define HEX_BASE 16
+# define DEC "0123456789"
+# define HEX_LOWER "0123456789abcdef"
+# define HEX_UPPER "0123456789ABCDEF"
+# define PRINTF_ERROR_CODE -1
 
 # define NO_DIFF 0
 # define SPACE_DELIMETER ' '
@@ -95,6 +100,14 @@ typedef struct s_stack
 
 /* FUNCTION DECLARATIONS */
 
+/* UTILITY FUNCTIONS */
+
+size_t	ft_len(char **arr);
+int		ft_strcmp(const char *s1, const char *s2);
+long	ft_atol(const char *str);
+char	*ft_itoa(int n);
+char	**ft_split(char const *s, char c);
+
 /* LINKED LIST FUNCTIONS */
 
 int		ft_lstsize(t_list *lst);
@@ -117,25 +130,32 @@ void	rra(t_stack *ps);
 void	rrb(t_stack *ps);
 void	rrr(t_stack *ps);
 
-/* UTILITY FUNCTIONS */
+/* PRINTF */
 
-size_t	ft_len(char **arr);
-int		ft_strcmp(const char *s1, const char *s2);
-long	ft_atol(const char *str);
-char	*ft_itoa(int n);
-char	**ft_split(char const *s, char c);
+int		print_char(int fd, char c);
+int		print_str(int fd, const char *str);
+int		print_int(int fd, long n);
+int		print_ubase(int fd, uintmax_t n, uintmax_t base, const char *alphabet);
+int		print_ptr(int fd, void *n);
+int		spec_handler(int fd, va_list *lst, const char **str);
+int		ft_printf(int fd, const char *str, ...);
 
 /* ARGUMENT PARSING */
 
-void	get_benchmarks(t_stack *ps);
 bool	fill_stack(int argc, char **argv, t_stack *ps);
 void	set_strategy(t_stack *ps);
-int		parse_args(int argc, char **argv, t_stack *ps);
+void	assign_ranks(t_list *a);
+void	get_benchmarks(t_stack *ps);
+
+/* CHUNK SORT UTILITIES */
+
+bool	chunk_in_top_half(t_list *a, int start, int end, int size);
+void	push_chunk(t_stack *ps, int start, int end);
+void	push_all_chunks(t_stack *ps, int chunk_size, int n);
+void	pull_all(t_stack *ps);
 
 /* SORTING UTILITIES */
 
-void	assign_ranks(t_list *a);
-int		value_at_index(t_list *lst, int i);
 int		find_position(t_list *lst, int target_idx);
 void	move_a_to_top(t_stack *ps, int target_idx);
 void	move_b_to_top(t_stack *ps, int target_idx);

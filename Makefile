@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+         #
+#    By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/15 20:55:09 by aschinog          #+#    #+#              #
-#    Updated: 2026/07/16 23:13:32 by mtrukhin         ###   ########.fr        #
+#    Updated: 2026/07/17 14:13:32 by aschinog         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-SRCS = bench.c chunk_sort.c ft_lstops.c ft_printf.c ft_split.c ops_cmb.c \
+SRCS = bench.c chunk_utils.c ft_lstops.c ft_printf.c ft_split.c ops_cmb.c \
 ops_ps.c ops_rot.c parse_args.c parse_utils.c presort.c print_utils.c \
-push_swap.c selection_sort.c set_strategy.c sort_utils.c
+push_swap.c set_strategy.c sort_algos.c sort_utils.c
 OBJS = $(SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 

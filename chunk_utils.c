@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chunk_sort.c                                       :+:      :+:    :+:   */
+/*   chunk_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 11:22:31 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/16 23:13:11 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/17 14:12:56 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** Push largest-rank chunks first so b ends up with smallest on top.
 */
 
-static bool	chunk_in_top_half(t_list *a, int start, int end, int size)
+bool	chunk_in_top_half(t_list *a, int start, int end, int size)
 {
 	t_list	*cur;
 	int		pos;
@@ -36,7 +36,7 @@ static bool	chunk_in_top_half(t_list *a, int start, int end, int size)
 	return (false);
 }
 
-static void	push_chunk(t_stack *ps, int start, int end)
+void	push_chunk(t_stack *ps, int start, int end)
 {
 	int	size;
 	int	mid;
@@ -61,7 +61,7 @@ static void	push_chunk(t_stack *ps, int start, int end)
 	}
 }
 
-static void	push_all_chunks(t_stack *ps, int chunk_size, int n)
+void	push_all_chunks(t_stack *ps, int chunk_size, int n)
 {
 	int	start;
 	int	end;
@@ -83,7 +83,7 @@ static void	push_all_chunks(t_stack *ps, int chunk_size, int n)
 ** rotate b to bring it to top, then pa.
 */
 
-static void	pull_all(t_stack *ps)
+void	pull_all(t_stack *ps)
 {
 	int	max;
 	int	size;
@@ -92,26 +92,7 @@ static void	pull_all(t_stack *ps)
 	while (size-- > 0)
 	{
 		max = get_max_index(ps->b);
-		move_to_top(ps, ps->b, max);
+		move_b_to_top(ps, max);
 		pa(ps);
 	}
-}
-
-/*
-** Entry point: O(n√n) chunk sort.
-*/
-
-void	chunk_sort(t_stack *ps)
-{
-	int	n;
-	int	chunk_size;
-
-	n = ft_lstsize(ps->a);
-	if (n <= 1)
-		return ;
-	chunk_size = ft_sqrt((double)n);
-	if (chunk_size < 1)
-		chunk_size = 1;
-	push_all_chunks(ps, chunk_size, n);
-	pull_all(ps);
 }

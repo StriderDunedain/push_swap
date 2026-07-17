@@ -134,20 +134,18 @@ int		parse_args(int argc, char **argv, t_stack *ps);
 
 /* SORTING UTILITIES */
 
-int		ft_sqrt(int n);
 void	assign_ranks(t_list *a);
 int		value_at_index(t_list *lst, int i);
 int		find_position(t_list *lst, int target_idx);
-void	move_to_top(t_stack *ps, t_list *lst, int target_idx);
+void	move_a_to_top(t_stack *ps, int target_idx);
+void	move_b_to_top(t_stack *ps, int target_idx);
 int		get_max_index(t_list *lst);
 int		get_min_index(t_list *lst);
 
-/* SELECTION SORT */
+/* SORTING ALGORITHMS */
 
 void	selection_sort(t_stack *ps);
-
-/* CHUNK SORT */
-
 void	chunk_sort(t_stack *ps);
+void	radix_sort(t_stack *ps);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:45 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 22:57:45 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/17 10:43:24 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ra(t_stack *ps)
 	last = ft_lstlast(ps->a);
 	last->next = first;
 	ps->operations[RA]++;
+	ps->total_ops++;
 	ft_printf(STDOUT_FILENO, "ra\n");
 }
 
@@ -41,6 +42,7 @@ void	rb(t_stack *ps)
 	last = ft_lstlast(ps->b);
 	last->next = first;
 	ps->operations[RB]++;
+	ps->total_ops++;
 	ft_printf(STDOUT_FILENO, "rb\n");
 }
 
@@ -59,6 +61,7 @@ void	rra(t_stack *ps)
 	last->next = ps->a;
 	ps->a = last;
 	ps->operations[RRA]++;
+	ps->total_ops++;
 	ft_printf(STDOUT_FILENO, "rra\n");
 }
 
@@ -77,5 +80,6 @@ void	rrb(t_stack *ps)
 	last->next = ps->b;
 	ps->b = last;
 	ps->operations[RRB]++;
+	ps->total_ops++;
 	ft_printf(STDOUT_FILENO, "rrb\n");
 }

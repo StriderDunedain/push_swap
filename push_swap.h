@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/16 23:43:54 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/17 12:48:24 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ int		ft_strcmp(const char *s1, const char *s2);
 long	ft_atol(const char *str);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
-int		ft_sqrt(int n);
 
 /* ARGUMENT PARSING */
 
@@ -141,12 +140,10 @@ void	move_b_to_top(t_stack *ps, int target_idx);
 int		get_max_index(t_list *lst);
 int		get_min_index(t_list *lst);
 
-/* SELECTION SORT */
+/* SORTING ALGORITHMS */
 
 void	selection_sort(t_stack *ps);
-
-/* CHUNK SORT */
-
 void	chunk_sort(t_stack *ps);
+void	radix_sort(t_stack *ps);
 
 #endif

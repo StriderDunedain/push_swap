@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 20:12:50 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/17 15:03:26 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/19 14:30:48 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	print_disorder(double disorder)
 	ft_printf(STDERR_FILENO, stringed);
 	ft_printf(STDERR_FILENO, ".");
 	write(STDERR_FILENO, buf, 2);
+	ft_printf(STDERR_FILENO, "%%");
 	ft_printf(STDERR_FILENO, "\n");
 	free(stringed);
 }
@@ -62,7 +63,8 @@ static void	print_disorder(double disorder)
 void	get_benchmarks(t_stack *ps)
 {
 	print_disorder(ps->disorder);
-	ft_printf(STDERR_FILENO, "[bench] strategy:  %s\n", ps->strategy);
+	ft_printf(STDERR_FILENO, "[bench] strategy:  %s / %s\n",
+		ps->strategy, ps->complexity);
 	ft_printf(STDERR_FILENO, "[bench] total_ops:  %i\n", ps->total_ops);
 	ft_printf(STDERR_FILENO, "[bench] ");
 	ft_printf(STDERR_FILENO, "sa:  %i  ", ps->operations[SA]);

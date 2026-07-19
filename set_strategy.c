@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_strategy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 15:25:20 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/17 14:47:56 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/19 14:25:14 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,20 @@ static double	measure_disorder(t_list *a)
 	return (mistakes / total_pairs);
 }
 
-static char	*choose_adaptive_strategy(t_stack *ps, double disorder)
+static char	*choose_adaptive_complexity(t_stack *ps, double disorder)
 {
 	if (disorder < DISORDER_SIMPLE)
 	{
 		ps->required_algo = ALGO_SIMPLE;
-		return (SIMPLE_STRATEGY);
+		return (SIMPLE_COMPLEXITY);
 	}
 	else if (disorder < DISORDER_MEDIUM)
 	{
 		ps->required_algo = ALGO_MEDIUM;
-		return (MEDIUM_STRATEGY);
+		return (MEDIUM_COMPLEXITY);
 	}
 	ps->required_algo = ALGO_COMPLEX;
-	return (COMPLEX_STRATEGY);
+	return (COMPLEX_COMPLEXITY);
 }
 
 void	set_strategy(t_stack *ps)
@@ -73,11 +73,23 @@ void	set_strategy(t_stack *ps)
 	disorder = measure_disorder(ps->a);
 	ps->disorder = disorder;
 	if (ps->required_algo == ALGO_SIMPLE)
+	{
 		ps->strategy = SIMPLE_STRATEGY;
+		ps->complexity = SIMPLE_COMPLEXITY;
+	}
 	else if (ps->required_algo == ALGO_MEDIUM)
+	{
 		ps->strategy = MEDIUM_STRATEGY;
+		ps->complexity = MEDIUM_COMPLEXITY;
+	}
 	else if (ps->required_algo == ALGO_COMPLEX)
+	{
 		ps->strategy = COMPLEX_STRATEGY;
+		ps->complexity = COMPLEX_COMPLEXITY;
+	}
 	else
-		ps->strategy = choose_adaptive_strategy(ps, disorder);
+	{
+		ps->strategy = ADAPTIVE_STRATEGY;
+		ps->complexity = choose_adaptive_complexity(ps, disorder);
+	}
 }

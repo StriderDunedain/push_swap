@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/17 14:46:16 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/19 14:34:16 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	set_ps(t_stack *ps)
 {
+	size_t	i;
+
 	ps->strategy = NULL;
 	ps->disorder = 0;
 	ps->a = NULL;
@@ -21,6 +23,9 @@ static void	set_ps(t_stack *ps)
 	ps->total_ops = 0;
 	ps->bench = false;
 	ps->required_algo = ALGO_NONE;
+	i = 0;
+	while (i < OP_COUNT)
+		ps->operations[i++] = 0;
 }
 
 #include <stdio.h>  // TODO: Delete later
@@ -46,6 +51,8 @@ int	stub_main(int argc, char **argv)
 	if (!fill_stack(argc, argv, &ps))
 		return (1);
 	set_strategy(&ps);
+	printf("strategy: %s\n", ps.strategy);
+	printf("stack a: %p\n", ps.a);
 	printlist(ps.a);
 	printf("\n\n");
 	assign_ranks(ps.a);
@@ -57,6 +64,8 @@ int	stub_main(int argc, char **argv)
 		radix_sort(&ps);
 	printf("\n\n");
 	printlist(ps.a);
+	if (ps.bench)
+		get_benchmarks(&ps);
 	ft_lstclear(&ps.a);
 	ft_lstclear(&ps.b);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/17 14:52:44 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/19 14:31:07 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,14 @@
 # define DISORDER_SIMPLE 0.2
 # define DISORDER_MEDIUM 0.5
 
-# define SIMPLE_STRATEGY "Simple / O(n²)"
-# define MEDIUM_STRATEGY "Medium / O(n√n)"
-# define COMPLEX_STRATEGY "Complex / O(n log n)"
+# define SIMPLE_STRATEGY "Simple"
+# define MEDIUM_STRATEGY "Medium"
+# define COMPLEX_STRATEGY "Complex"
+# define ADAPTIVE_STRATEGY "Adaptive"
+
+# define SIMPLE_COMPLEXITY "O(n²)"
+# define MEDIUM_COMPLEXITY "O(n√n)"
+# define COMPLEX_COMPLEXITY "O(n log n)"
 
 # define SIMPLE_FLAG "--simple"
 # define MEDIUM_FLAG "--medium"
@@ -86,6 +91,7 @@ typedef struct s_list
 typedef struct s_stack
 {
 	const char	*strategy;
+	const char	*complexity;
 	double		disorder;
 
 	t_list		*a;

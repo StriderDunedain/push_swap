@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:44:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/19 16:50:53 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/20 17:58:33 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static bool	is_numerical(char *value)
 
 static bool	is_valid_args(char **values, t_stack *ps)
 {
+	if (!values)
+		return (false);
 	while (*values)
 	{
 		if (!(is_numerical(*values) || is_flag(*values, ps)))
@@ -70,7 +72,7 @@ static bool	clean_up(char **values, t_stack *ps)
 	size_t	i;
 
 	i = 0;
-	while (values[i])
+	while (values && values[i])
 		free(values[i++]);
 	free(values);
 	ft_lstclear(&ps->a);
@@ -88,7 +90,7 @@ bool	fill_stack(int argc, char **argv, t_stack *ps)
 	while (argc-- > 1)
 	{
 		values = ft_split(argv[argc], SPACE_DELIMETER);
-		i = ft_len(values);
+		i = ft_arrlen(values);
 		if (!is_valid_args(values, ps))
 			return (clean_up(values, ps));
 		while (i)

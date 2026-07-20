@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/19 22:20:37 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/20 17:57:55 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 
 /* INCLUDES */
 
+# include <limits.h>
+# include <unistd.h>
 # include <stdarg.h>
 # include <stdint.h>
 # include <stdlib.h>
 # include <stdbool.h>
-# include <limits.h>
-# include <unistd.h>
 
 /* DEFINES */
+
+# define BUFFER_SIZE 2048
+# define MAX_FD 4096
 
 # define DEC_BASE 10
 # define HEX_BASE 16
@@ -108,7 +111,8 @@ typedef struct s_stack
 
 /* UTILITY FUNCTIONS */
 
-size_t	ft_len(char **arr);
+int		ft_strlen(const char *s);
+size_t	ft_arrlen(char **arr);
 int		ft_strcmp(const char *s1, const char *s2);
 long	ft_atol(const char *str);
 char	*ft_itoa(int n);
@@ -145,6 +149,13 @@ int		print_ubase(int fd, uintmax_t n, uintmax_t base, const char *alphabet);
 int		print_ptr(int fd, void *n);
 int		spec_handler(int fd, va_list *lst, const char **str);
 int		ft_printf(int fd, const char *str, ...);
+
+/* GET_NEXT_LINE */
+
+char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s);
+char	*ft_strjoin(char *s1, char *s2);
+char	*get_next_line(int fd);
 
 /* ARGUMENT PARSING */
 

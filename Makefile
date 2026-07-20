@@ -3,43 +3,43 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+         #
+#    By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/15 20:55:09 by aschinog          #+#    #+#              #
-#    Updated: 2026/07/19 23:40:04 by mtrukhin         ###   ########.fr        #
+#    Updated: 2026/07/20 18:22:52 by aschinog         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = push_swap
-CHECKER     = checker
+NAME			= push_swap
+CHECKER			= checker
 
-SRCS        = print_utils.c get_next_line.c ops_rot.c main.c chunk_utils.c \
-    get_next_line_utils.c other_utils.c set_strategy.c ft_lstops.c \
-    parse_args.c sort_algos.c ft_printf.c ops_cmb.c parse_utils.c \
-    sort_utils.c ft_split.c ops_ps.c push_swap.c
+SRCS			= chunk_utils.c ft_lstops.c ft_printf.c ft_split.c \
+	get_next_line.c get_next_line_utils.c ops_cmb.c ops_ps.c ops_rot.c \
+	other_utils.c parse_args.c parse_utils.c print_utils.c push_swap.c \
+	set_strategy.c sort_algos.c sort_utils.c
 
-CHECKER_SRCS = print_utils.c get_next_line.c ops_rot.c chunk_utils.c \
-    get_next_line_utils.c other_utils.c set_strategy.c ft_lstops.c \
-    parse_args.c ft_printf.c ops_cmb.c parse_utils.c \
-    ft_split.c ops_ps.c checker.c push_swap.c sort_algos.c sort_utils.c
+CHECKER_SRCS	= checker.c chunk_utils.c ft_lstops.c ft_printf.c ft_split.c \
+	get_next_line.c get_next_line_utils.c ops_cmb.c ops_ps.c ops_rot.c \
+	other_utils.c parse_args.c parse_utils.c print_utils.c set_strategy.c \
+	sort_algos.c sort_utils.c
 
-OBJS        = $(SRCS:.c=.o)
-CHECKER_OBJS = $(CHECKER_SRCS:.c=.o)
+OBJS			= $(SRCS:.c=.o)
+CHECKER_OBJS	= $(CHECKER_SRCS:.c=.o)
 
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	cc $(CFLAGS) -o $(NAME) $(OBJS)
 
+%.o: %.c
+	cc $(CFLAGS) -c -o $@ $<
+
 bonus: $(CHECKER)
 
 $(CHECKER): $(CHECKER_OBJS)
 	cc $(CFLAGS) -o $(CHECKER) $(CHECKER_OBJS)
-
-%.o: %.c
-	cc $(CFLAGS) -c -o $@ $<
 
 clean:
 	rm -f $(OBJS) $(CHECKER_OBJS)

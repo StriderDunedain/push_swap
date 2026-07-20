@@ -3,59 +3,120 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 21:09:48 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/05/03 18:39:50 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/20 17:51:09 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "push_swap.h"
+
+static char	*ft_read_until_nl(int fd, char *big_buf)
+{
+	int		len;
+	char	*lil_buf;
+
+	lil_buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!lil_buf)
+		return (free(big_buf), NULL);
+	len = 1;
+	while (len && !ft_strchr(big_buf, '\n'))
+	{
+		len = read(fd, lil_buf, BUFFER_SIZE);
+		if (len == -1)
+			return (free(lil_buf), free(big_buf), NULL);
+		lil_buf[len] = '\0';
+		big_buf = ft_strjoin(big_buf, lil_buf);
+		if (!big_buf)
+			return (free(lil_buf), free(big_buf), NULL);
+	}
+	free(lil_buf);
+	return (big_buf);
+}
+
+static char	*ft_extract_line(char *s)
+{
+	size_t	i;
+	char	*new;
+
+	if (!*s)
+		return (NULL);
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	if (s[i] == '\n')
+		i++;
+	new = malloc((i + 1) * sizeof(char));
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (s[i] && s[i] != '\n')
+	{
+		new[i] = s[i];
+		i++;
+	}
+	if (s[i] == '\n')
+		new[i++] = '\n';
+	new[i] = '\0';
+	return (new);
+}
+
+static char	*ft_get_rest(char *s)
+{
+	size_t	i;
+	size_t	j;
+	char	*new;
+
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	if (!s[i] || !s[i + 1])
+		return (free(s), s = NULL, NULL);
+	new = malloc((ft_strlen(s) - i + 1) * sizeof(char));
+	if (!new)
+		return (free(s), s = NULL, NULL);
+	i++;
+	j = 0;
+	while (s[i])
+		new[j++] = s[i++];
+	new[j] = '\0';
+	free(s);
+	return (new);
+}
 
 char	*get_next_line(int fd)
 {
-	char		*temp;
-	ssize_t		bytes_read;
-	char		*clean_line;
-	static char	*line;
+	static char	*big_buf;
+	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > MAX_FD || BUFFER_SIZE <= 0)
+		return (free(big_buf), big_buf = NULL, NULL);
+	big_buf = ft_read_until_nl(fd, big_buf);
+	if (!big_buf)
 		return (NULL);
-	temp = malloc(BUFFER_SIZE + 1);
-	if (!temp)
-		return (NULL);
-	bytes_read = read_line(fd, temp, &line);
-	free(temp);
-	if (bytes_read < 0 || !line || !*line)
-	{
-		free(line);
-		line = NULL;
-		return (NULL);
-	}
-	clean_line = extract_line(line);
-	line = trim_line(line);
-	return (clean_line);
+	line = ft_extract_line(big_buf);
+	big_buf = ft_get_rest(big_buf);
+	if (!line)
+		return (free(big_buf), big_buf = NULL, NULL);
+	return (line);
 }
+/* #include <fcntl.h>
+#include <stdio.h>
+int	main(void)
+{
+	int		fd;
+	char	*line;
 
-/*int	main(void) {
-	int		fd = open("./test.txt", O_RDONLY);
-	char	*res;
-
-	while ((res = get_next_line(fd))) {
-		size_t	i = 0;
-
-		printf("\"");
-		while (res[i]) {
-			if (res[i] == '\n')
-				printf("\\n");
-			else
-				printf("%c", res[i]);
-			i++;
-		}
-		free(res);
-		printf("\"\n");
-		printf("-----\n");
+	fd = open("test.txt", O_RDONLY);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		printf("Line: %s", line);
+		free(line);
 	}
-	printf("%s\n", res);
-	free(res);
-}*/
+	close(fd);
+	return (0);
+} */

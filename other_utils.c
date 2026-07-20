@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   other_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 20:12:50 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/19 14:30:48 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/20 18:31:37 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	set_ps(t_stack *ps)
+{
+	size_t	i;
+
+	ps->strategy = NULL;
+	ps->disorder = 0;
+	ps->a = NULL;
+	ps->b = NULL;
+	ps->total_ops = 0;
+	ps->bench = false;
+	ps->required_algo = ALGO_NONE;
+	i = 0;
+	while (i < OP_COUNT)
+		ps->operations[i++] = 0;
+}
 
 static void	rank_node(t_list *target, t_list *a)
 {
@@ -48,6 +64,8 @@ static void	print_disorder(double disorder)
 
 	hundredths = (int)(disorder * 10000 + 0.5);
 	stringed = ft_itoa(hundredths / 100);
+	if (!stringed)
+		return ;
 	buf[0] = '0' + (hundredths % 100) / 10;
 	buf[1] = '0' + (hundredths % 100) % 10;
 	buf[2] = '\0';

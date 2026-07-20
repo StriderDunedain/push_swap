@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 22:07:04 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/19 23:11:12 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/20 17:13:05 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "get_next_line.h"
-
-static int	ft_strlen(char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s && s[len])
-		++len;
-	return (len);
-}
-
 
 static char	*strip_newline(char *op)
 {
@@ -34,7 +22,6 @@ static char	*strip_newline(char *op)
 	return (op);
 }
 
-
 static bool	is_sorted(t_list *a)
 {
 	while (a && a->next)
@@ -44,13 +31,6 @@ static bool	is_sorted(t_list *a)
 		a = a->next;
 	}
 	return (true);
-}
-
-static void	clean_up(t_stack *ps)
-{
-	ft_lstclear(&ps->a);
-	ft_lstclear(&ps->b);
-	exit(1);
 }
 
 static void	execute_op(t_stack *ps, char *op)
@@ -77,13 +57,7 @@ static void	execute_op(t_stack *ps, char *op)
 		rrb(ps);
 	else if (ft_strcmp(op, "rrr") == NO_DIFF)
 		rrr(ps);
-	else
-	{
-		ft_printf(STDOUT_FILENO, PS_ERROR_MSG);
-		clean_up(ps);
-	}
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -106,6 +80,7 @@ int	main(int argc, char **argv)
 		ft_printf(STDOUT_FILENO, "OK\n");
 	else
 		ft_printf(STDOUT_FILENO, "KO\n");
-	clean_up(&ps);
+	ft_lstclear(&ps.a);
+	ft_lstclear(&ps.b);
 	return (0);
 }

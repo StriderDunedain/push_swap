@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 16:45:58 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/16 12:08:58 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/20 17:23:59 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_len(char	**arr)
+size_t	ft_arrlen(char	**arr)
 {
 	size_t	len;
 
 	len = 0;
-	while (arr[len])
+	while (arr && arr[len])
 		++len;
 	return (len);
 }

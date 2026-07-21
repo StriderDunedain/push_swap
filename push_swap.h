@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/20 19:10:27 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 15:37:08 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ typedef struct s_stack
 	size_t		total_ops;
 
 	bool		bench;
-	t_algo		required_algo;
+	t_algo		algo;
 }	t_stack;
 
 /* FUNCTION DECLARATIONS */
@@ -162,7 +162,7 @@ char	*get_next_line(int fd);
 bool	fill_stack(int argc, char **argv, t_stack *ps);
 void	set_strategy(t_stack *ps);
 void	assign_ranks(t_list *a);
-void	get_benchmarks(t_stack *ps);
+void	print_bench(t_stack *ps);
 void	set_ps(t_stack *ps);
 
 /* CHUNK SORT UTILITIES */

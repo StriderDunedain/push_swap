@@ -33,7 +33,7 @@ The program starts with two linked-list stacks:
 - **Stack A** contains unique signed integers; its first value is the top.
 - **Stack B** starts empty.
 
-The goal is to leave **A sorted from smallest to largest** and **B empty**, using only the operations defined by the project. Instead of sorting the original values directly, the program assigns every value a normalized rank from `0` to `n - 1`. Ranking preserves order while making chunk boundaries and binary radix passes straightforward.
+The goal is to leave **A sorted from smallest to largest** and **B empty**, using only the operations defined by the project. Instead of sorting the original values directly, the program assigns every value a normalized rank from `0` to `n - 1`.
 
 ### Main features
 
@@ -42,14 +42,14 @@ The goal is to leave **A sorted from smallest to largest** and **B empty**, usin
 - Supports forced `simple`, `medium`, `complex`, and `adaptive` strategies.
 - Computes an inversion-based disorder score before making any move.
 - Reports total and per-operation statistics through `--bench` on `stderr`.
-- Includes a bonus `checker` executable.
+- Includes a bonus `checker`.
 
 ## Instructions
 
 ### Compilation
 
 ```bash
-make            # build push_swap
+make all        # build push_swap
 make bonus      # build checker
 make clean      # remove object files
 make fclean     # remove objects and executables
@@ -213,8 +213,6 @@ An inversion is a pair where a larger value appears before a smaller value. Ther
 | `0.20 ... < 0.50` | Chunk sort | `O(n√n)` | Range-based extraction balances scan cost and organization of B |
 | `>= 0.50` | Binary radix sort | `O(n log n)` | High disorder benefits from input-independent bitwise passes |
 
-The sorting phase uses `O(1)` auxiliary bookkeeping beyond the linked-list nodes. Including both stacks and parsed input, total program storage is `O(n)`.
-
 ## Benchmark mode
 
 `--bench` keeps the operation stream on `stdout` and writes metrics to `stderr`:
@@ -231,15 +229,6 @@ Reported fields:
 - Selected strategy and declared complexity class.
 - Total operation count.
 - Individual counts for `sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, and `rrr`.
-
-### Subject performance targets
-
-| Input size | Pass | Good | Excellent |
-|--:|--:|--:|--:|
-| 100 random integers | `< 2000` | `< 1500` | `< 700` |
-| 500 random integers | `< 12000` | `< 8000` | `< 5500` |
-
-Use repeated randomized tests rather than relying on a single favorable input.
 
 ## Checker
 
@@ -278,8 +267,8 @@ The implementation was completed collaboratively, with both learners responsible
 
 | Learner | Main contributions |
 |:--|:--|
-| **aschinog** | Program entry point, shared header and data model, Makefile, linked-list operations, stack instructions, core sorting algorithms, position/min-max helpers, integration and review |
-| **mtrukhin** | Argument parsing and validation, strategy selection and disorder metric, chunk helpers, benchmark reporting, checker foundation, local `printf`, `split`, and line-reading utilities |
+| **aschinog** | Program entry point, shared header and data model, Makefile, linked-list operations, stack instructions, selection and radix sorting algorithms, position/min-max helpers, integration and review |
+| **mtrukhin** | Argument parsing and validation, strategy selection and disorder metric, chunk helpers and algorithm, benchmark reporting, checker foundation, local `printf`, `split`, and line-reading utilities |
 | **Both** | Algorithm discussion, debugging, testing, Norm compliance, performance analysis, and final integration |
 
 ## Resources and AI usage
@@ -287,6 +276,7 @@ The implementation was completed collaboratively, with both learners responsible
 ### References
 
 - Push Swap subject
+- Peers and Friends
 - [Big-O notation](https://en.wikipedia.org/wiki/Big_O_notation)
 - [Selection sort](https://en.wikipedia.org/wiki/Selection_sort)
 - [Radix sort](https://en.wikipedia.org/wiki/Radix_sort)
@@ -294,4 +284,4 @@ The implementation was completed collaboratively, with both learners responsible
 
 ### AI usage
 
-AI was used to help create this README, summarize the project requirements, and turn the implemented sorting logic into concise explanations. It was also used as a documentation aid for clarifying chunk sorting, radix passes, disorder thresholds, test commands, and complexity terminology.
+AI was used to help create this README, summarize the project requirements, and turn the implemented sorting logic into concise explanations.

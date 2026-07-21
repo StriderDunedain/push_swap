@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:46:42 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/20 18:04:02 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 15:37:08 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int	main(int argc, char **argv)
 		return (1);
 	set_strategy(&ps);
 	assign_ranks(ps.a);
-	if (ps.required_algo == ALGO_SIMPLE)
+	if (ps.algo == ALGO_SIMPLE)
 		selection_sort(&ps);
-	else if (ps.required_algo == ALGO_MEDIUM)
+	else if (ps.algo == ALGO_MEDIUM)
 		chunk_sort(&ps);
-	else if (ps.required_algo == ALGO_COMPLEX)
+	else if (ps.algo == ALGO_COMPLEX)
 		radix_sort(&ps);
 	if (ps.bench)
-		get_benchmarks(&ps);
+		print_bench(&ps);
 	ft_lstclear(&ps.a);
 	ft_lstclear(&ps.b);
 	return (0);

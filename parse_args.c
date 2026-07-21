@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:44:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/20 17:58:33 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 15:47:15 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ static bool	is_flag(char *value, t_stack *ps)
 		|| ft_strcmp(value, ADAPTIVE_FLAG) == NO_DIFF
 	)
 	{
-		if (ps->required_algo != ALGO_NONE)
+		if (ps->algo != ALGO_NONE)
 			return (false);
 		if (ft_strcmp(value, SIMPLE_FLAG) == NO_DIFF)
-			ps->required_algo = ALGO_SIMPLE;
+			ps->algo = ALGO_SIMPLE;
 		else if (ft_strcmp(value, MEDIUM_FLAG) == NO_DIFF)
-			ps->required_algo = ALGO_MEDIUM;
+			ps->algo = ALGO_MEDIUM;
 		else if (ft_strcmp(value, COMPLEX_FLAG) == NO_DIFF)
-			ps->required_algo = ALGO_COMPLEX;
+			ps->algo = ALGO_COMPLEX;
 		else
-			ps->required_algo = ALGO_ADAPTIVE;
+			ps->algo = ALGO_ADAPTIVE;
 	}
 	else
 		return (false);
@@ -43,8 +43,6 @@ static bool	is_numerical(char *value)
 {
 	if (*value == '-' || *value == '+')
 		++value;
-	if (!*value)
-		return (false);
 	while (*value)
 	{
 		if (!(*value >= '0' && *value <= '9'))

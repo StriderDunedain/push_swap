@@ -6,7 +6,7 @@
 /*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 21:21:44 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/17 14:34:22 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 16:11:13 by aschinog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	chunk_sort(t_stack *ps)
 	n = ft_lstsize(ps->a);
 	if (n <= 1)
 		return ;
-	chunk_size = ft_sqrt((double)n);
+	chunk_size = ft_sqrt(n);
 	if (chunk_size < 1)
 		chunk_size = 1;
 	push_all_chunks(ps, chunk_size, n);

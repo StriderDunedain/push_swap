@@ -214,7 +214,7 @@ An inversion is a pair where a larger value appears before a smaller value. Ther
 `--bench` keeps the operation stream on `stdout` and writes metrics to `stderr`:
 
 ```bash
-ARG="4 67 3 87 23"
+ARG="4 67 3 87 22"
 ./push_swap --bench --adaptive $ARG > operations.txt 2> benchmark.txt
 cat benchmark.txt
 ```

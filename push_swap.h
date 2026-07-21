@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/22 00:08:30 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/22 00:12:55 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,10 @@ char	*get_next_line(int fd);
 /* ARGUMENT PARSING */
 
 bool	fill_stack(int argc, char **argv, t_stack *ps);
+bool	add_to_stack(t_stack *ps, char **values, char *value);
+bool	is_empty_argument(char *s);
+bool	is_numerical(char *value);
+bool	clean_up(char **values, t_stack *ps);
 void	set_strategy(t_stack *ps);
 bool	is_sorted(t_list *a);
 void	set_ps(t_stack *ps);

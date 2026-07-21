@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_strategy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 15:25:20 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/21 15:04:43 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 20:44:04 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,17 @@ void	set_strategy(t_stack *ps)
 		ps->strategy = ADAPTIVE_STRATEGY;
 		ps->complexity = choose_adaptive_complexity(ps, ps->disorder);
 	}
+}
+
+bool	add_to_stack(t_stack *ps, char **values, char *value)
+{
+	long	num;
+
+	if (!is_numerical(value))
+		return (true);
+	num = ft_atol(value);
+	if (num < INT_MIN || num > INT_MAX
+		|| !ft_lstadd_front(&ps->a, ft_lstnew((int)num)))
+		return (clean_up(values, ps));
+	return (true);
 }

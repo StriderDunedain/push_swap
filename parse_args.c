@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 21:44:11 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/21 15:47:15 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/21 20:44:37 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ static bool	is_flag(char *value, t_stack *ps)
 	return (true);
 }
 
-static bool	is_numerical(char *value)
+bool	is_numerical(char *value)
 {
 	if (*value == '-' || *value == '+')
 		++value;
+	if (!*value)
+		return (false);
 	while (*value)
 	{
 		if (!(*value >= '0' && *value <= '9'))
@@ -65,7 +67,7 @@ static bool	is_valid_args(char **values, t_stack *ps)
 	return (true);
 }
 
-static bool	clean_up(char **values, t_stack *ps)
+bool	clean_up(char **values, t_stack *ps)
 {
 	size_t	i;
 
@@ -82,28 +84,28 @@ static bool	clean_up(char **values, t_stack *ps)
 bool	fill_stack(int argc, char **argv, t_stack *ps)
 {
 	size_t	i;
-	long	num;
 	char	**values;
 
+	values = NULL;
 	while (argc-- > 1)
 	{
+		if (is_empty_argument(argv[argc]))
+			return (clean_up(values, ps));
 		values = ft_split(argv[argc], SPACE_DELIMETER);
+		if (!values)
+			return (clean_up(NULL, ps));
 		i = ft_arrlen(values);
 		if (!is_valid_args(values, ps))
 			return (clean_up(values, ps));
 		while (i)
 		{
-			if (is_numerical(values[--i]))
-			{
-				num = ft_atol(values[i]);
-				if (!(num >= INT_MIN && num <= INT_MAX)
-					|| !ft_lstadd_front(&ps->a, ft_lstnew(num)))
-					return (clean_up(values, ps));
-			}
+			if (!add_to_stack(ps, values, values[--i]))
+				return (false);
 			free(values[i]);
 			values[i] = NULL;
 		}
 		free(values);
+		values = NULL;
 	}
 	return (true);
 }

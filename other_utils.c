@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 20:12:50 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/22 00:04:19 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/22 00:06:55 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,16 @@ void	print_bench(t_stack *ps)
 		ps->operations[RR], ps->operations[RRA], ps->operations[RRB],
 		ps->operations[RRR]);
 	free(stringed);
+}
+
+bool	is_empty_argument(char *s)
+{
+	while (*s)
+	{
+		if (!(*s == ' ' || *s == '\n' || *s == '\t'
+				|| *s == '\v' || *s == '\f' || *s == '\r'))
+			return (false);
+		++s;
+	}
+	return (true);
 }

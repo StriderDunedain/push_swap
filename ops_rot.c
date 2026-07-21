@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_rot.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 19:49:45 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/17 10:43:24 by aschinog         ###   ########.fr       */
+/*   Updated: 2026/07/22 01:43:06 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	rra(t_stack *ps)
 	ps->a = last;
 	ps->operations[RRA]++;
 	ps->total_ops++;
-	ft_printf(STDOUT_FILENO, "rra\n");
+	if (!ps->checker_mode)
+		ft_printf(STDOUT_FILENO, "rra\n");
 }
 
 void	rrb(t_stack *ps)
@@ -81,5 +82,6 @@ void	rrb(t_stack *ps)
 	ps->b = last;
 	ps->operations[RRB]++;
 	ps->total_ops++;
-	ft_printf(STDOUT_FILENO, "rrb\n");
+	if (!ps->checker_mode)
+		ft_printf(STDOUT_FILENO, "rrb\n");
 }

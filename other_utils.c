@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/16 20:12:50 by mtrukhin          #+#    #+#             */
-/*   Updated: 2026/07/22 00:07:41 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/22 01:43:37 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	set_ps(t_stack *ps)
 	ps->b = NULL;
 	ps->total_ops = 0;
 	ps->bench = false;
+	ps->checker_mode = false;
 	ps->algo = ALGO_NONE;
 	i = 0;
 	while (i < OP_COUNT)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aschinog <aschinog@student.42vienna.com    +#+  +:+       +#+         #
+#    By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/15 20:55:09 by aschinog          #+#    #+#              #
-#    Updated: 2026/07/20 19:11:23 by aschinog         ###   ########.fr        #
+#    Updated: 2026/07/22 01:44:52 by mtrukhin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CHECKER_SRCS	= checker.c chunk_utils.c ft_lstops.c ft_printf.c ft_split.c \
 OBJS			= $(SRCS:.c=.o)
 CHECKER_OBJS	= $(CHECKER_SRCS:.c=.o)
 
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
@@ -37,6 +37,12 @@ $(NAME): $(OBJS)
 	cc $(CFLAGS) -c -o $@ $<
 
 bonus: $(CHECKER)
+
+redo:
+	make all
+	make bonus
+	make clean
+	clear
 
 $(CHECKER): $(CHECKER_OBJS)
 	cc $(CFLAGS) -o $(CHECKER) $(CHECKER_OBJS)

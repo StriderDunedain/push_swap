@@ -6,7 +6,7 @@
 /*   By: mtrukhin <mtrukhin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 20:02:39 by aschinog          #+#    #+#             */
-/*   Updated: 2026/07/22 00:18:32 by mtrukhin         ###   ########.fr       */
+/*   Updated: 2026/07/22 01:43:46 by mtrukhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct s_stack
 	size_t		total_ops;
 
 	bool		bench;
+	bool		checker_mode;
 	t_algo		algo;
 }	t_stack;
 
